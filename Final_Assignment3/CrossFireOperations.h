@@ -42,6 +42,7 @@ struct slot
 
 //Function Prototypes
 //Board functions
+int getBoardSize();
 void createBoard(int boardSize, struct slot **upLeft, struct slot **upRight, struct slot **downLeft, struct slot **downRight);
 void PlayersonBoard(int boardSize);
 
