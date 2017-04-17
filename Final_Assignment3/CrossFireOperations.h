@@ -24,6 +24,7 @@ struct players
 	int dexterity;
 	int magicSkills;
 	int luck;
+	int position;
 	struct Slot *position;
 };
 
