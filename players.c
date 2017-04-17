@@ -3,103 +3,104 @@
 #include <stdlib.h>
 #include <time.h>
 
-//#include "game.h"
-//function for getting player number
-int userNumberPlayers()
+struct players
 {
+	char name[50];
+	char type[50];
+	int points;
+	int smartness;
+	int strength;
+	int dexterity;
+	int magicSkills;
+	int luck;
+};
+
+/*struct slots
+{
+	int type;
+	int playernum;
+	int player_in_slot;
+	int slotType;
+};*/
+
+int main(void)
+{
+	struct players player[6];
 	int playerno;
-	
-	//user input for players and store in playerno
+	int i,p;
+	int type;
+
 	printf("enter the number of players: (max 6): ");
 	scanf("%d", &playerno);
-	//if number greater than 6 is entered ask again
+
 	while(playerno>6)
 	{
 		printf("\n Maximum is 6 players, enter again: ");
 		scanf("%d", &playerno);
 	}
-	return playerno;
-}
-//function for entering player details(type, name)
-void playerInfo()
-{
-	
-	//input name of players and store in players.name
-	printf("Enter the name of player %d: ", i+1);
-	scanf("%s", players[i].name);
-	printf("\n");
-	//enter type of player
-	for (i = 0; i < p; i++)
+	for(i=0; i<playerno;i++)
 	{
-		printf("Enter the player type for Player %d:\n", i+1);
-		printf("0: HUMAN\n1: OGRE\n2: ELF\n3: WIZARD\n");
-		
-		scanf("%d", &Type);
+		printf("Enter the name of player %d: ", i+1);
+		scanf("%s", player[i].name);
 	}
-	//to store the types in an array
-	char Types[][7] = {"Human", "Ogre", "Elf", "Wizard"};
 	
 	for (i = 0; i < playerno; i++)
-	{	//calling the types function
-		playerTypes(i);
-	}
-	
-}
-//function to print out the player's capapbilities depending on the type
-void playerTypes(int p)
-{
-	srand (time(NULL));
-	
-	if(players[p].type == 0)
-	{	//place human into player's type
-		strcpy(player[i].type, "Human");
-		//capapbilities for human
-		player[p].points = 100;
-		player[p].smartness = (1 + rand()) % 49;
-		player[p].strength = 1 + rand() % 49;
-		player[p].dexterity = 1 + rand() % 49;
-		player[p].magicSkills = 1 + rand() % 49;
-		player[p].luck = 1 + rand() % 49;
-		printf("\nHUMAN: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[p].points, player[p].smartness, player[p].strength, player[p].dexterity, player[p].magicSkills, player[p].luck);
-	}
-	
-	else if(players[p].type == 1)
-	{	//place ogre into player's type
+	{
+		printf("Enter the player type for Player %d:\n", i+1);
+		printf("1: HUMAN\n2: OGRE\n3: ELF\n4: WIZARD\n");
+		
+		scanf("%d", &type);
+		
+		if(type == 1)
+		{
+			strcpy(player[i].type, "Human");
+		
+			player[i].points = 100;
+			player[i].smartness = (1 + rand()) % 49;
+			player[i].strength = 1 + rand() % 49;
+			player[i].dexterity = 1 + rand() % 49;
+			player[i].magicSkills = 1 + rand() % 49;
+			player[i].luck = 1 + rand() % 49;
+			printf("\nHUMAN: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[i].points, player[i].smartness, player[i].strength, player[i].dexterity, player[i].magicSkills, player[i].luck);
+		}
+		
+		else if(type == 2)
+	{
 		strcpy(player[i].type, "Ogre");
-		//capapbilities for ogre
-		player[p].points = 100;
-		player[p].smartness = 1 + rand() % 20;
-		player[p].strength = 80 + rand() % 20;
-		player[p].dexterity = 80 + rand() %20;
-		player[p].magicSkills = 0;
-		player[p].luck = 1 + rand() % 30;
-		printf("\nOGRE: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[p].points, player[p].smartness, player[p].strength, player[p].dexterity, player[p].magicSkills, player[p].luck);
+		
+		player[i].points = 100;
+		player[i].smartness = 1 + rand() % 20;
+		player[i].strength = 80 + rand() % 20;
+		player[i].dexterity = 80 + rand() %20;
+		player[i].magicSkills = 0;
+		player[i].luck = 1 + rand() % 30;
+		printf("\nOGRE: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[i].points, player[i].smartness, player[i].strength, player[i].dexterity, player[i].magicSkills, player[i].luck);
 	}
 	
-	else if (players[p].type == 2)
-	{	//place elf into player's type
+	else if (type == 3)
+	{
 		strcpy(player[i].type, "Elf");
-		//capapbilities for elf
-		player[p].points = 100;
-		player[p].smartness = (70 + rand()) % 30;
-		player[p].strength = 1 + rand() % 50;
-		player[p].dexterity = 1 + rand() %100;
-		player[p].magicSkills = 50 + rand() %30;
-		player[p].luck = 60 + rand() % 40;
-		printf("\nELF: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[p].points, player[p].smartness, player[p].strength, player[p].dexterity, player[p].magicSkills, player[p].luck);
+		
+		player[i].points = 100;
+		player[i].smartness = (70 + rand()) % 30;
+		player[i].strength = 1 + rand() % 50;
+		player[i].dexterity = 1 + rand() %100;
+		player[i].magicSkills = 50 + rand() %30;
+		player[i].luck = 60 + rand() % 40;
+		printf("\nELF: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[i].points, player[i].smartness, player[i].strength, player[i].dexterity, player[i].magicSkills, player[i].luck);
 	}
 	
-	else if (players[p].type == 3)
-	{	//place wizard into player's type
+	else if (type == 4)
+	{
 		strcpy(player[i].type, "Wizard");
-		//capapbilities for wizard
-		player[p].points = 100;
-		player[p].smartness = (90 + rand()) % 10;
-		player[p].strength = 1 + rand() % 20;
-		player[p].dexterity = 1 + rand() %100;
-		player[p].magicSkills = 80 + rand() %20;
-		player[p].luck = 50 + rand() % 50;
-		printf("\nWIZARD: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[p].points, player[p].smartness, player[p].strength, player[p].dexterity, player[p].magicSkills, player[p].luck);
+		
+		player[i].points = 100;
+		player[i].smartness = (90 + rand()) % 10;
+		player[i].strength = 1 + rand() % 20;
+		player[i].dexterity = 1 + rand() %100;
+		player[i].magicSkills = 80 + rand() %20;
+		player[i].luck = 50 + rand() % 50;
+		printf("\nWIZARD: lifepoints: %d\tsmartness: %d\tstrength: %d\tdexterity: %d\tmagicSkills: %d\tluck: %d\n", player[i].points, player[i].smartness, player[i].strength, player[i].dexterity, player[i].magicSkills, player[i].luck);
 		
 	}
 }
